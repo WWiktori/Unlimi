@@ -3,15 +3,17 @@ import Header from '../../components/Header/Header';
 // import Slider from '../../components/Slider/Slider';
 import Category from '../../components/Category/Category';
 import Footer from '../../components/Footer/Footer';
-import './Home.module.scss';
+import HomeNavigation from '../../components/HomeNavigation/HomeNavigation';
+import styles from './Home.module.scss';
 
 const Home = () => (
   <>
     <Header />
-    <main className="home">
-      {/* <Slider /> */}
+    <main className={styles.home}>
+      <section>
+        <HomeNavigation/>
+      </section>
       <section className="home__categories">
-        <h2>Категорії</h2>
         <Category />
       </section>
     </main>

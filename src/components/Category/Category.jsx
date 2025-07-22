@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchCategoryImages } from '../../utils/api';
-import './Category.module.scss';
+import styles from './Category.module.scss';
 
 const Category = () => {
   const [images, setImages] = useState([]);
@@ -10,13 +10,13 @@ const Category = () => {
   }, []);
 
   return (
-    <div className="category">
+    <div className={styles.category}>
       {images.map((url, idx) => (
         <img
           key={idx}
           src={url}
-          alt={`Category ${idx+1}`}
-          className="category__img"
+          alt={`Category ${idx + 1}`}
+          className={styles.category__img}
           loading="lazy"
         />
       ))}
