@@ -31,12 +31,11 @@ const Slider = () => {
           infinite: true,
           slidesToShow: 1,
           slidesToScroll: 1,
-          dots: false, // ❌ Вимикаємо стандартні крапки
+          dots: false,
           prevArrow: `<button type="button" class="slick-prev ${styles.arrow}" style="left: 50px">←</button>`,
           nextArrow: `<button type="button" class="slick-next ${styles.arrow}" style="right: 50px">→</button>`,
         });
 
-        // Слідкуємо за активним слайдом
         $('.slider').on('afterChange', function (event, slick, currentSlide) {
           setActiveDot(currentSlide % 3);
         });
@@ -69,7 +68,6 @@ const Slider = () => {
         <a className={styles.slider__button} href="/info">Zobacz więcej</a>
       </div>
 
-      {/* Кастомні 3 крапки */}
       <div className={styles.customDots}>
         {[0, 1, 2].map((dotIndex) => (
           <button

@@ -36,20 +36,37 @@ const HomeNavigation = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetchCategoryImagesHeight(20).then(imgs => {
-            let imgIdx = 0;
-            const cats = baseCategories.map(cat => {
-                const catImg = imgs[imgIdx++];
-                const subcats = cat.subcategories.map(sub => ({
-                    ...sub,
-                    image: imgs[imgIdx++]
-                }));
-                return { ...cat, image: catImg, subcategories: subcats };
-            });
-            setCategories(cats);
-            setActive(cats[0]);
-        });
-    }, []);
+        const preloadImage = (src) => {
+          return new Promise((resolve) => {
+            const img = new Image();
+            img.src = src;
+            img.onload = () => resolve(src); 
+            img.onerror = () => resolve(src);
+          });
+        };
+      
+        const load = async () => {
+          const imgs = await fetchCategoryImagesHeight(20);
+          const loadedImages = await Promise.all(imgs.map(preloadImage));
+      
+          let imgIdx = 0;
+          const cats = baseCategories.map(cat => {
+            const catImg = loadedImages[imgIdx++];
+            const subcats = cat.subcategories.map(sub => ({
+              ...sub,
+              image: loadedImages[imgIdx++]
+            }));
+            return { ...cat, image: catImg, subcategories: subcats };
+          });
+      
+          setCategories(cats);
+          setActive(cats[0]);
+        };
+      
+        load();
+      }, []);
+      
+      
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -101,27 +118,29 @@ const HomeNavigation = () => {
                         </div>
 
                         <div className={styles.menuCenter}>
-                            <div className={styles.subcategories}>
-                                {active.subcategories && (
-                                    <div className={styles.subcategoryGrid}>
-                                        {active.subcategories.map(sub => (
-                                            <div
-                                                key={sub.label}
-                                                className={styles.subcategoryItem}
-                                                onMouseEnter={() => setHoveredSub(sub.label)}
-                                                onClick={() => navigate(`/${active.value}/${sub.label.replace(/\s+/g, '-').toLowerCase()}`)}
-                                            >
-                                                {sub.label}
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
+                            <div className={styles.menuCenter__color}>
+                                <div className={styles.subcategories}>
+                                    {active.subcategories && (
+                                        <div className={styles.subcategoryGrid}>
+                                            {active.subcategories.map(sub => (
+                                                <div
+                                                    key={sub.label}
+                                                    className={styles.subcategoryItem}
+                                                    onMouseEnter={() => setHoveredSub(sub.label)}
+                                                    onClick={() => navigate(`/${active.value}/${sub.label.replace(/\s+/g, '-').toLowerCase()}`)}
+                                                >
+                                                    {sub.label}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
 
-                            <div className={styles.menuRight}>
-                                {rightImage && (
-                                    <img src={rightImage} alt="category" className={styles.categoryImage} />
-                                )}
+                                <div className={styles.menuRight}>
+                                    {rightImage && (
+                                        <img src={rightImage} alt="category" className={styles.categoryImage} />
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>

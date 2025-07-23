@@ -34,6 +34,13 @@
         right: 50px;
         color: white;
         text-decoration: none;
+        max-width: fit-content;
+
+        @media (max-width: 1140px) {
+            bottom: 30px;
+            right: 0;
+            left: 50px;        
+        }
     }
 
     &__title{
@@ -77,8 +84,7 @@
     }
   
     &:hover {
-      background: rgba(0, 0, 0, 0.5);
-      border: none;
+      background: transition;
       color: white;
     }
   }
