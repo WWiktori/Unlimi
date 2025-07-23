@@ -1,8 +1,32 @@
-.headerNav{
+.headerNav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
+  
+    @media (max-width: 1560px) {
+      flex-direction: column;
+      align-items: stretch; 
+
+    }
+  }
+
+  .topNav {
+    order: 1;
+  
+    @media (max-width: 1560px) {
+      order: 2;
+    }
+  }
+  
+  .filterWrapper {
+    order: 2;
+  
+    @media (max-width: 1561px) {
+        padding: 20px 0 0;
+      order: 1;
+    }
+  }
+
 .homeNav {
     display: flex;
     align-items: center;
@@ -15,6 +39,31 @@
     align-items: center;
     gap: 4px;
 }
+
+.menuWrapper {
+    flex-direction: row;
+  
+    @media (max-width: 1520px) {
+      flex-direction: column;
+    }
+  }
+  
+  .menuLeft {
+    order: 2;
+  
+    @media (min-width: 1521px) {
+      order: 1;
+    }
+  }
+  
+  .menuCenter {
+    order: 1; 
+  
+    @media (min-width: 1521px) {
+      order: 2;
+    }
+  }
+  
 
 .dropdownSelected {
     padding: 8px 0px;
@@ -69,6 +118,10 @@
     align-items: center;
     gap: 24px;
     position: relative;
+
+    @media (max-width: 1560px) {
+        padding: 0px 0px;
+    }
 }
 
 .dropdownTrigger {

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from "./HomeNavigation.module.scss";
-import { fetchCategoryImages } from '../../utils/api';
+import { fetchCategoryImagesHeight } from '../../utils/api';
 import HomeIcon from '../../assets/Logo.svg';
 import { FiChevronDown } from 'react-icons/fi';
 import Filter from '../Filters/Filters'
@@ -36,7 +36,7 @@ const HomeNavigation = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetchCategoryImages(20).then(imgs => {
+        fetchCategoryImagesHeight(20).then(imgs => {
             let imgIdx = 0;
             const cats = baseCategories.map(cat => {
                 const catImg = imgs[imgIdx++];
@@ -133,7 +133,7 @@ const HomeNavigation = () => {
 
 
             </div>
-            <div>
+            <div className={styles.filterWrapper}>
                 <Filter />
             </div>
         </div>
