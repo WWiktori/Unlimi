@@ -9,7 +9,21 @@ export const fetchCategoryImagesLong = async (count = 6) => {
 };
 
 
-export const fetchCategoryImagesHeight = async (count = 6) => {
+export const fetchCategoryImagesHeight = async (count = 30) => {
   const urls = await Array.from({ length: count }, (_, i) => `https://picsum.photos/403/520?random=${i+1}`);
+  return urls;
+};
+
+
+export const fetchPromotions = async (count = 20) => {
+  const urls = await Array.from({ length: count }, (_, i) => `https://picsum.photos/403/520?random=${20*i+5}`);
+  return urls;
+};
+export const fetchNewItems = async (count = 15) => {
+  const urls = await Array.from({ length: count }, (_, i) => `https://picsum.photos/403/520?random=${30*i+10}`);
+  return urls;
+};
+export const fetchBestsellers = async (count = 10) => {
+  const urls = await Array.from({ length: count }, (_, i) => `https://picsum.photos/403/520?random=${40*i+19}`);
   return urls;
 };

@@ -4,7 +4,7 @@ import 'slick-carousel';
 import { fetchCategoryImagesLong } from '../../utils/api';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import styles from './Slider.module.scss';
+import './Slider.css'; // замість module.scss
 
 const Slider = () => {
   const [images, setImages] = useState([]);
@@ -14,7 +14,7 @@ const Slider = () => {
     const getImages = async () => {
       try {
         const result = await fetchCategoryImagesLong();
-        setImages(result);
+        setImages(result.slice(0, 3));
       } catch (error) {
         console.error('Failed to load images:', error);
       }
@@ -25,21 +25,22 @@ const Slider = () => {
 
   useEffect(() => {
     if (images.length > 0) {
-      setTimeout(() => {
-        $('.slider').not('.slick-initialized').slick({
+      const $slider = $('.slider');
+      if (!$slider.hasClass('slick-initialized')) {
+        $slider.slick({
           arrows: true,
           infinite: true,
           slidesToShow: 1,
           slidesToScroll: 1,
-          dots: false,
-          prevArrow: `<button type="button" class="slick-prev ${styles.arrow}" style="left: 50px">←</button>`,
-          nextArrow: `<button type="button" class="slick-next ${styles.arrow}" style="right: 50px">→</button>`,
+          dots: true,
+          prevArrow: `<button type="button" class="slick-prev custom-arrow" style="left: 50px">←</button>`,
+          nextArrow: `<button type="button" class="slick-next custom-arrow" style="right: 50px">→</button>`,
         });
 
-        $('.slider').on('afterChange', function (event, slick, currentSlide) {
-          setActiveDot(currentSlide % 3);
+        $slider.on('afterChange', function (event, slick, currentSlide) {
+          setActiveDot(currentSlide);
         });
-      }, 0);
+      }
     }
   }, [images]);
 
@@ -49,33 +50,23 @@ const Slider = () => {
   };
 
   return (
-    <div className={styles.contentSlider}>
-      <div className={`slider ${styles.slider}`}>
+    <div className="content-slider">
+      <div className="slider">
         {images.map((src, index) => (
-          <div key={index} className={styles.slider__item}>
+          <div key={index} className="slider__item">
             <img src={src} alt={`Slide ${index + 1}`} />
           </div>
         ))}
       </div>
 
-      <div className={styles.slider__content}>
+      <div className="slider__content">
         <div>
-          <h1 className={styles.slider__title}>Nowa kolekcja</h1>
-          <h3 className={styles.slider__subtitle}>
+          <h1 className="slider__title">Nowa kolekcja</h1>
+          <h3 className="slider__subtitle">
             Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab.
           </h3>
         </div>
-        <a className={styles.slider__button} href="/info">Zobacz więcej</a>
-      </div>
-
-      <div className={styles.customDots}>
-        {[0, 1, 2].map((dotIndex) => (
-          <button
-            key={dotIndex}
-            className={`${styles.dot} ${activeDot === dotIndex ? styles.active : ''}`}
-            onClick={() => handleDotClick(dotIndex)}
-          />
-        ))}
+        <a className="slider__button" href="/info">Zobacz więcej</a>
       </div>
     </div>
   );
