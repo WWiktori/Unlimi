@@ -33,8 +33,6 @@ const Slider = () => {
           slidesToShow: 1,
           slidesToScroll: 1,
           dots: true,
-          prevArrow: `<button type="button" class="slick-prev custom-arrow" style="left: 50px">←</button>`,
-          nextArrow: `<button type="button" class="slick-next custom-arrow" style="right: 50px">→</button>`,
         });
 
         $slider.on('afterChange', function (event, slick, currentSlide) {
@@ -51,7 +49,7 @@ const Slider = () => {
 
   return (
     <div className="content-slider">
-      <div className="slider">
+      <div className="slider slider--largeArrows slider--largeGap">
         {images.map((src, index) => (
           <div key={index} className="slider__item">
             <img src={src} alt={`Slide ${index + 1}`} />

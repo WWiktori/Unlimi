@@ -18,13 +18,13 @@ const Home = () => (
         <HomeNavigation/>
         <Slider/>
       </section>
-      <section className="home__categories">
+      <section className={styles.home__categories}>
         <Category />
         <ItemSlider/>
         <NewsLetter/>
       </section>
+      <Footer />
     </main>
-    <Footer />
   </>
 );
 
