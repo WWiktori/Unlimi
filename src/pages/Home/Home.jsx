@@ -6,6 +6,7 @@ import Footer from '../../components/Footer/Footer';
 import HomeNavigation from '../../components/HomeNavigation/HomeNavigation';
 import styles from './Home.module.scss';
 import ItemSlider from '../../components/itemSlider/ItemSlider'
+import NewsLetter from '../../components/NewsLetter/NewsLetter'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -20,6 +21,7 @@ const Home = () => (
       <section className="home__categories">
         <Category />
         <ItemSlider/>
+        <NewsLetter/>
       </section>
     </main>
     <Footer />
