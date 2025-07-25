@@ -1,5 +1,6 @@
 import { FiSearch, FiUser, FiHeart, FiShoppingBag } from 'react-icons/fi';
 import styles from './Filters.module.scss';
+import ShoppingBag from '../ShoppingBag/ShoppingBag'
 
 
 const Filter = () => {
@@ -19,7 +20,7 @@ const Filter = () => {
                     <button><FiHeart size={18} /></button>
                 </div>
                 <div className={styles.icons__border}>
-                    <button><FiShoppingBag size={18} /></button>
+                    <ShoppingBag/>
                 </div>
             </div>
         </div>

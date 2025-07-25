@@ -11,8 +11,8 @@
   position: relative;
 }
 
-.slider--largeGap{
-  gap: 20px;
+.slider--largeGap .slick-track{
+  gap: 23px;
 }
 
 .slider__item img {

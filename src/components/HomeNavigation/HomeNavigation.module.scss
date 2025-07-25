@@ -133,11 +133,12 @@
     left: 0;
     z-index: 100;
     display: flex;
+    justify-content: space-between;
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
-    width: 100%;
     overflow: hidden;
+    width: 100%;
 }
 
 .menuLeft {
@@ -165,7 +166,8 @@
     margin-bottom: 4px;
     transition: background 0.2s, color 0.2s;
     font-size: 1.1rem;
-    min-width: 300px;
+    min-width: 200px ;
+
 
     &.active {
         font-weight: 600;

@@ -27,3 +27,7 @@ export const fetchBestsellers = async (count = 10) => {
   const urls = await Array.from({ length: count }, (_, i) => `https://picsum.photos/403/520?random=${40*i+19}`);
   return urls;
 };
+export const fetchShoppingBag = async (count = 10) => {
+  const urls = await Array.from({ length: count }, (_, i) => `https://picsum.photos/120/160?random=${4*i+19}`);
+  return urls;
+};
