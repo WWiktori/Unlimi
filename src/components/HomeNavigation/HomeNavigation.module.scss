@@ -16,10 +16,20 @@
     @media (max-width: 1700px) {
         order: 2;
     }
+
+
 }
 
 .filterWrapper {
     order: 2;
+    display: flex;
+    align-items: center;
+
+    &__image{
+        @media (min-width: 1051px) {
+            display: none;            
+        }
+    }
 
     @media (max-width: 1700px) {
         padding: 20px 0 0;
@@ -106,6 +116,10 @@
 
     @media (max-width: 1560px) {
         padding: 0px 0px;
+    }
+
+    @media (max-width: 1050px) {
+        display: none;
     }
 }
 

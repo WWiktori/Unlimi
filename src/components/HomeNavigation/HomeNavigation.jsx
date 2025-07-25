@@ -153,6 +153,7 @@ const HomeNavigation = () => {
 
             </div>
             <div className={styles.filterWrapper}>
+            <img src={HomeIcon} alt="Logo" className={styles.filterWrapper__image} />
                 <Filter />
             </div>
         </div>

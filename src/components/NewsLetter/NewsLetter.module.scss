@@ -5,7 +5,7 @@
     font-family: 'Inter', sans-serif;
     margin-top: 60px;
     width: 100%;
-    height: 160px;
+    height: 100%;
     background: #0068FF;
     border-radius: 16px;
     position: relative;
@@ -13,15 +13,23 @@
     align-items: center;
     justify-content: space-between;
 
+    @media (max-width: 1400px) {
+       
+      flex-direction: column;
+    }
+
     &__image {
         position: relative;
         left: 60px;
+
+        @media (max-width: 1400px) {
+          display: none;
+        }
     }
     &__content{
         display: flex;
         align-items: center;
         width: 100%;
-        min-width: 750px;
     }
 
     &__text{
@@ -29,7 +37,12 @@
         left: 50px;
         color: white;
         width: 57%;
-        
+
+        @media (max-width: 1400px) {
+          margin-top: 20px;
+          width: 100%;
+          max-width: 500px;
+        }        
         &__title{
             font-size: 24px;
             font-weight: 800;
@@ -54,6 +67,12 @@
     width: 100%;
     position: relative;
     right: 100px;
+
+    @media (max-width: 1400px) {
+      margin: 20px 0;
+      max-width: none;
+      left: 50px;
+    }
 
 }
 .searchBox {
@@ -95,6 +114,7 @@
   .checkboxLabel {
     display: flex;
     align-items: center;
+    padding: 10px 0;
     margin-top: 4px;
     font-size: 14px;
     color: #FFFFFF;
@@ -107,7 +127,7 @@
     -moz-appearance: none;
 
     margin-right: 8px;
-    width: 17px;
+    min-width: 17px;
     height: 17px;
 
     background: #FFFFFF;
@@ -120,7 +140,7 @@
     width: 4px;
     height: 8px;
     left: 9px;
-    bottom: 8px;
+    bottom: 17px;
     border: solid black;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);

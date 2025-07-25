@@ -56,7 +56,7 @@ const NewsLetter = () => {
                 <label className={styles.checkboxLabel}>
                     <input type="checkbox" className={styles.checkboxInput} />
                     <span className={styles.checkboxText}>
-                        Akceptuję <p className={styles.checkboxText__brbottom}> Regulamin</p> i <p className={styles.checkboxText__brbottom}> Politykę Prywatności</p>.
+                        Akceptuję <p className={styles.checkboxText__brbottom}> Regulamin</p> i <span className={styles.checkboxText__brbottom}> Politykę Prywatności</span>.
                     </span>
                 </label>
             </div>
