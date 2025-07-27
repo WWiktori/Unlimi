@@ -5,6 +5,8 @@ import { fetchCategoryImagesHeight } from '../../utils/api';
 import HomeIcon from '../../assets/Logo.svg';
 import { FiChevronDown } from 'react-icons/fi';
 import Filter from '../Filters/Filters'
+import { FiSearch } from 'react-icons/fi';
+
 
 
 const baseCategories = [
@@ -37,36 +39,36 @@ const HomeNavigation = () => {
 
     useEffect(() => {
         const preloadImage = (src) => {
-          return new Promise((resolve) => {
-            const img = new Image();
-            img.src = src;
-            img.onload = () => resolve(src); 
-            img.onerror = () => resolve(src);
-          });
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.src = src;
+                img.onload = () => resolve(src);
+                img.onerror = () => resolve(src);
+            });
         };
-      
+
         const load = async () => {
-          const imgs = await fetchCategoryImagesHeight(20);
-          const loadedImages = await Promise.all(imgs.map(preloadImage));
-      
-          let imgIdx = 0;
-          const cats = baseCategories.map(cat => {
-            const catImg = loadedImages[imgIdx++];
-            const subcats = cat.subcategories.map(sub => ({
-              ...sub,
-              image: loadedImages[imgIdx++]
-            }));
-            return { ...cat, image: catImg, subcategories: subcats };
-          });
-      
-          setCategories(cats);
-          setActive(cats[0]);
+            const imgs = await fetchCategoryImagesHeight(20);
+            const loadedImages = await Promise.all(imgs.map(preloadImage));
+
+            let imgIdx = 0;
+            const cats = baseCategories.map(cat => {
+                const catImg = loadedImages[imgIdx++];
+                const subcats = cat.subcategories.map(sub => ({
+                    ...sub,
+                    image: loadedImages[imgIdx++]
+                }));
+                return { ...cat, image: catImg, subcategories: subcats };
+            });
+
+            setCategories(cats);
+            setActive(cats[0]);
         };
-      
+
         load();
-      }, []);
-      
-      
+    }, []);
+
+
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -91,7 +93,9 @@ const HomeNavigation = () => {
     return (
         <div className={styles.headerNav}>
             <div className={styles.topNav}>
-                <img src={HomeIcon} alt="Logo" />
+                <div className={styles.topNav__image}>
+                    <img src={HomeIcon} alt="Logo" />
+                </div>
                 <div className={styles.dropdownTrigger} onClick={() => setOpen((prev) => !prev)}>
                     <div className={styles.dropdown}>
                         <span>Damskie buty skórzane</span>
@@ -152,10 +156,21 @@ const HomeNavigation = () => {
 
 
             </div>
-            <div className={styles.filterWrapper}>
-            <img src={HomeIcon} alt="Logo" className={styles.filterWrapper__image} />
-                <Filter />
+            <div>
+                <div className={styles.filterWrapper}>
+                    <div>
+                        <img src={HomeIcon} alt="Logo" className={styles.filterWrapper__image} />
+                    </div>
+                    <Filter />
+                </div>
+                <div className={styles.searchBox}>
+                    <input type="text" placeholder="Wyszukaj" />
+                    <button className={styles.searchButton}>
+                        <FiSearch size={18} />
+                    </button>
+                </div>
             </div>
+
         </div>
     );
 };

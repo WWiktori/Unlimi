@@ -51,31 +51,58 @@ const ItemSlider = () => {
 
     useEffect(() => {
         const $slider = $('.multiple-items');
-
+      
         if ($slider.hasClass('slick-initialized')) {
-            $slider.slick('unslick');
+          $slider.slick('unslick');
         }
-
+      
         const timeout = setTimeout(() => {
-            const $newSlider = $('.multiple-items');
-            if ($newSlider.length > 0 && images.length > 0) {
-                $newSlider.slick({
-                    infinite: true,
-                    slidesToShow: 4,
-                    slidesToScroll: 3,
-                    dots: true,
-                    arrows: true,
-                });
-            }
+          const $newSlider = $('.multiple-items');
+          if ($newSlider.length > 0 && images.length > 0) {
+            $newSlider.slick({
+              infinite: true,
+              slidesToShow: 4,
+              slidesToScroll: 1,
+              dots: true,
+              arrows: true,
+              responsive: [
+                {
+                  breakpoint: 1200,
+                  settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                  },
+                },
+                {
+                  breakpoint: 900,
+                  settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    arrows: false,
+                  },
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                      slidesToShow: 1.5,
+                      slidesToScroll: 1,
+                      arrows: false,
+                      infinite: false,
+                    },
+                },
+              ],
+            });
+          }
         }, 100);
-
+      
         return () => {
-            clearTimeout(timeout);
-            if ($slider.hasClass('slick-initialized')) {
-                $slider.slick('unslick');
-            }
+          clearTimeout(timeout);
+          if ($slider.hasClass('slick-initialized')) {
+            $slider.slick('unslick');
+          }
         };
-    }, [images]);
+      }, [images]);
+      
 
 
 

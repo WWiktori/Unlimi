@@ -5,6 +5,8 @@
     font-family: 'Inter', sans-serif;
 
     &__categories{
-        margin-bottom: 50px;
+        display: flex;
+        flex-direction: column;
+        gap: 90px;
     }
 }

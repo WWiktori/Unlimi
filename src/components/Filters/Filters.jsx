@@ -1,12 +1,14 @@
 import { useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { FiSearch, FiUser, FiHeart } from 'react-icons/fi';
 import styles from './Filters.module.scss';
 import Hamburger from 'hamburger-react'
 import ShoppingBag from '../ShoppingBag/ShoppingBag'
-import MobileMenu from '../MobileMenu/MobileMenu'; 
+import MobileMenu from '../MobileMenu/MobileMenu';
 
 const Filter = () => {
     const [isOpen, setOpen] = useState(false);
+    const isMobile = useMediaQuery({ maxWidth: 450 });
 
     return (
         <>
@@ -27,7 +29,11 @@ const Filter = () => {
                     <div className={styles.icons__border}>
                         <ShoppingBag />
                     </div>
-                    <div className={`${styles.icons__border__burgerMenu} ${styles.icons__border}`} style={{ transform: 'scale(0.75)', transformOrigin: 'left' }}>
+                    <div className={`${styles.icons__border__burgerMenu} ${styles.icons__border}`}
+                     style={{
+                        transform: isMobile ? 'scale(0.65)' : 'scale(0.75)',
+                        transformOrigin: isMobile ? 'left' : 'left',
+                    }}>
                         <Hamburger size={18} toggled={isOpen} toggle={setOpen} />
                     </div>
                 </div>

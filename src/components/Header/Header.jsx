@@ -12,15 +12,17 @@ const navItems = [
         href: '/phone'
     },
     {
-        icon: <img src={EditPng}/>,
+        icon: <img src={EditPng} />,
         text: 'Napisz do nas', href: '/contact'
     },
     {
-        icon : <LiaShippingFastSolid size={18} />,
-        text: 'Darmowa dostawa', href: '/delivery' },
+        icon: <LiaShippingFastSolid size={18} />,
+        text: 'Darmowa dostawa', href: '/delivery'
+    },
     {
-        icon : <img src={Restock}/>,
-        text: '30 Dni na darmowy zwrot', href: '/returns' }
+        icon: <img src={Restock} />,
+        text: '30 Dni na darmowy zwrot', href: '/returns'
+    }
 ];
 
 const Header = () => (
@@ -40,6 +42,10 @@ const Header = () => (
                 ))}
             </ul>
         </nav>
+        <div className={styles.header__mobile}>
+            <AiOutlinePhone size={18} />
+            <a className={styles.header__navItemLink} href='/phone'>(+48) 000 000 000</a>
+        </div>
     </header>
 );
 

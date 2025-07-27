@@ -1,9 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { fetchCategoryImages } from '../../utils/api';
+import { fetchCategoryImages, fetchCategoryImagesSmale } from '../../utils/api';
 import styles from './Category.module.scss';
 
 const Category = () => {
   const [imagePairs, setImagePairs] = useState([]);
+  const [categories, setCategories] = useState([
+    { name: 'Baleriny', image: null },
+    { name: 'Jazzowki', image: null },
+    { name: 'Mokasyny', image: null },
+    { name: 'Czolenka', image: null },
+    { name: 'Sandalty', image: null },
+    { name: 'Kozaki', image: null },
+    { name: 'Polidity', image: null },
+    { name: 'Wyprzadaz', image: null }
+  ]);
+
+  useEffect(() => {
+    const fetchImagesSmale = async () => {
+      try {
+        const images = await fetchCategoryImagesSmale(8);
+        
+        const updatedCategories = categories.map((category, index) => ({
+          ...category,
+          image: images[index] || null
+        }));
+        
+        setCategories(updatedCategories);
+      } catch (error) {
+        console.error('Error fetching category images:', error);
+      }
+    };
+
+    fetchImagesSmale();
+  }, []);
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -21,6 +50,7 @@ const Category = () => {
   }, []);
 
   return (
+    <div className={styles.categoryList}>
     <div className={styles.category}>
       {imagePairs.map((pair, columnIndex) => (
         <div key={columnIndex} className={styles.column}>
@@ -37,6 +67,25 @@ const Category = () => {
           })}
         </div>
       ))}
+    </div>
+    <div className={styles.categoryGrid}>
+      {categories.map((category, index) => (
+        <div key={index} className={styles.categoryItem}>
+          {category.image && (
+            <img 
+              src={category.image} 
+              alt={category.name} 
+              className={styles.categoryImage}
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'block';
+              }}
+            />
+          )}
+          <div className={styles.categoryName}>{category.name}</div>
+        </div>
+      ))}
+    </div>
     </div>
   );
 };

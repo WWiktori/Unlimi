@@ -3,6 +3,11 @@ export const fetchCategoryImages = async (count = 6) => {
   return urls;
 };
 
+export const fetchCategoryImagesSmale = async (count = 6) => {
+  const urls = await Array.from({ length: count }, (_, i) => `https://picsum.photos/174/174?random=${i+1}`);
+  return urls;
+};
+
 export const fetchCategoryImagesLong = async (count = 6) => {
   const urls = await Array.from({ length: count }, (_, i) => `https://picsum.photos/1400/568?random=${i+1}`);
   return urls;
@@ -31,3 +36,4 @@ export const fetchShoppingBag = async (count = 10) => {
   const urls = await Array.from({ length: count }, (_, i) => `https://picsum.photos/120/160?random=${4*i+19}`);
   return urls;
 };
+

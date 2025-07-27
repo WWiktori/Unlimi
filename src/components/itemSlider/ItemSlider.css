@@ -4,12 +4,15 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .optionText {
     display: flex;
     gap: 10px;
     font-family: 'Inter', sans-serif;
+    margin-bottom: 10px;
 }
 
 .optionText__tabs {
@@ -24,6 +27,9 @@
     font-size: 24px;
     cursor: pointer;
     color: #292929;
+    @media (max-width: 600px) {
+        font-size: 18px;
+    }
 }
 
 
@@ -72,7 +78,6 @@
 
 .optionText-button{
     font-family: 'Inter', sans-serif;
-    margin-top: 20px;
     color: #292929;
     font-size: 12px;
     font-weight: 400;

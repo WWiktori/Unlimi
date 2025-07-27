@@ -27,25 +27,19 @@ const Slider = () => {
     if (images.length > 0) {
       const $slider = $('.slider');
       if (!$slider.hasClass('slick-initialized')) {
+        const isMobile = window.innerWidth < 900;
+  
         $slider.slick({
-          arrows: true,
+          arrows: !isMobile,
           infinite: true,
           slidesToShow: 1,
           slidesToScroll: 1,
           dots: true,
         });
-
-        $slider.on('afterChange', function (event, slick, currentSlide) {
-          setActiveDot(currentSlide);
-        });
       }
     }
   }, [images]);
-
-  const handleDotClick = (index) => {
-    $('.slider').slick('slickGoTo', index);
-    setActiveDot(index);
-  };
+  
 
   return (
     <div className="content-slider">
@@ -60,9 +54,7 @@ const Slider = () => {
       <div className="slider__content">
         <div>
           <h1 className="slider__title">Nowa kolekcja</h1>
-          <h3 className="slider__subtitle">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab.
-          </h3>
+          <h3 className="slider__subtitle">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab.</h3>
         </div>
         <a className="slider__button" href="/info">Zobacz więcej</a>
       </div>

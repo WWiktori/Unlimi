@@ -14,6 +14,11 @@
     border-radius: 50px;
     overflow: hidden;
     padding: 4px 8px;
+
+    @media (max-width: 900px) {
+
+      display: none;
+  }
   }
   
   .searchBox input {
@@ -35,6 +40,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
   }
   
   .icons {
@@ -48,11 +54,16 @@
         padding: 3px;
 
         &__burgerMenu{
+
           @media (min-width: 1051px) {
             display: none;
 
           }
         }
+    }
+
+    @media (max-width: 450px ) {
+      gap: 6px;
     }
   }
 
@@ -71,5 +82,8 @@
     align-items: center;
     justify-content: center;
     
+    @media (max-width: 450px) {
+      padding: 4px;
+    }
   }
   
